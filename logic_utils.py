@@ -11,14 +11,23 @@ def parse_guess(raw: str):
     """
     raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
 
-
+#FIX: Implement the check_guess function in logic_utils.py as suggested by Codeptah.  Claude helped with this step. I verified this works correctly.
 def check_guess(guess, secret):
-    """
-    Compare guess to secret and return (outcome, message).
+    if guess == secret:
+        return "Win", "🎉 Correct!"
 
-    outcome examples: "Win", "Too High", "Too Low"
-    """
-    raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
+    try:
+        if guess > secret:
+            return "Too High", "📈 Go Lower!"
+        else:
+            return "Too Low", "📉 Go Higher!"
+    except TypeError:
+        g = str(guess)
+        if g == secret:
+            return "Win", "🎉 Correct!"
+        if g > secret:
+            return "Too High", "📈 Go Lower!"
+        return "Too Low", "📉 Go Higher!"
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
