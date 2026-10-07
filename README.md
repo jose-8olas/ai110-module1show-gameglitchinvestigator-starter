@@ -62,6 +62,19 @@ tests\test_game_logic.py ...                                                    
 
 
 
+========================================== test session starts ==========================================
+platform win32 -- Python 3.13.15, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\Users\15612\codepath-week2\ai110-module1show-gameglitchinvestigator-starter
+configfile: pytest.ini
+plugins: anyio-4.15.1
+collected 6 items
+
+tests\test_game_logic.py ......                                                                    [100%]
+
+=========================================== 6 passed in 0.04s ===========================================
+(.venv)
+
+
 ## 🚀 Stretch Features
 
 - [ ] [If you choose to complete Challenge 4, describe the Enhanced UI changes here — a screenshot is optional]

@@ -1,18 +1,54 @@
 def get_range_for_difficulty(difficulty: str):
-    """Return (low, high) inclusive range for a given difficulty."""
-    raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
+    """Return the inclusive guess bounds for a difficulty level.
 
+    Args:
+        difficulty: The selected difficulty name.
 
-def parse_guess(raw: str):
+    Returns:
+        A ``(low, high)`` tuple of inclusive integer bounds.
     """
-    Parse user input into an int guess.
+    raise NotImplementedError(
+        "Refactor this function from app.py into logic_utils.py"
+    )
 
-    Returns: (ok: bool, guess_int: int | None, error_message: str | None)
+
+def parse_guess(raw: str, low: int = 1, high: int = 100):
+    """Parse text as an integer guess and validate it against inclusive bounds.
+
+    Args:
+        raw: The input text to parse.
+        low: The minimum permitted guess.
+        high: The maximum permitted guess.
+
+    Returns:
+        A tuple of success status, parsed guess (or ``None``), and error
+        message (or ``None``).
     """
-    raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
+    if raw is None or not raw.strip():
+        return False, None, "Enter a guess."
 
-#FIX: Implement the check_guess function in logic_utils.py as suggested by Codeptah.  Claude helped with this step. I verified this works correctly.
+    try:
+        value = int(raw)
+    except (TypeError, ValueError):
+        return False, None, "Enter a whole number."
+
+    if value < low or value > high:
+        return False, None, f"Guess must be between {low} and {high}."
+
+    return True, value, None
+
+
 def check_guess(guess, secret):
+    """Compare a guess with the secret and return its outcome and hint.
+
+    Args:
+        guess: The player's guess.
+        secret: The game's secret value.
+
+    Returns:
+        A tuple containing ``"Win"``, ``"Too High"``, or ``"Too Low"`` and
+        the corresponding player-facing hint.
+    """
     if guess == secret:
         return "Win", "🎉 Correct!"
 
@@ -22,14 +58,25 @@ def check_guess(guess, secret):
         else:
             return "Too Low", "📉 Go Higher!"
     except TypeError:
-        g = str(guess)
-        if g == secret:
+        guess_text = str(guess)
+        if guess_text == secret:
             return "Win", "🎉 Correct!"
-        if g > secret:
+        if guess_text > secret:
             return "Too High", "📈 Go Lower!"
         return "Too Low", "📉 Go Higher!"
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
-    """Update score based on outcome and attempt number."""
-    raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
+    """Calculate the updated score for a guess outcome.
+
+    Args:
+        current_score: The player's score before this outcome.
+        outcome: The result label for the guess.
+        attempt_number: The one-based number of the current attempt.
+
+    Returns:
+        The score after applying the outcome's scoring rule.
+    """
+    raise NotImplementedError(
+        "Refactor this function from app.py into logic_utils.py"
+    )

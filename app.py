@@ -1,6 +1,6 @@
 import random
 import streamlit as st
-from logic_utils import check_guess
+from logic_utils import check_guess, parse_guess
 
 def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
@@ -11,23 +11,6 @@ def get_range_for_difficulty(difficulty: str):
         return 1, 50
     return 1, 100
 
-
-def parse_guess(raw: str):
-    if raw is None:
-        return False, None, "Enter a guess."
-
-    if raw == "":
-        return False, None, "Enter a guess."
-
-    try:
-        if "." in raw:
-            value = int(float(raw))
-        else:
-            value = int(raw)
-    except Exception:
-        return False, None, "That is not a number."
-
-    return True, value, None
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
     if outcome == "Win":
@@ -45,6 +28,28 @@ def update_score(current_score: int, outcome: str, attempt_number: int):
         return current_score - 5
 
     return current_score
+
+
+def render_guess_history():
+    st.sidebar.subheader("Guess History")
+    history = st.session_state.history
+
+    if not history:
+        st.sidebar.caption("No guesses yet.")
+        return
+
+    for index, entry in enumerate(history, start=1):
+        if not isinstance(entry, dict):
+            st.sidebar.write(f"{index}. {entry} - Result unavailable")
+        elif entry["outcome"] == "Invalid":
+            st.sidebar.write(f"{index}. {entry['guess']} - Invalid input")
+        else:
+            result = f"{entry['guess']} - {entry['outcome']}"
+            distance = entry.get("distance")
+            if distance is not None:
+                closeness = "exact match" if distance == 0 else f"{distance} away"
+                result += f" ({closeness})"
+            st.sidebar.write(f"{index}. {result}")
 
 st.set_page_config(page_title="Glitchy Guesser", page_icon="🎮")
 
@@ -137,18 +142,19 @@ if st.session_state.status != "playing":
         st.success("You already won. Start a new game to play again.")
     else:
         st.error("Game over. Start a new game to try again.")
+    render_guess_history()
     st.stop()
 
 if submit:
-    st.session_state.attempts += 1
-
-    ok, guess_int, err = parse_guess(raw_guess)
+    ok, guess_int, err = parse_guess(raw_guess, low, high)
 
     if not ok:
-        st.session_state.history.append(raw_guess)
+        st.session_state.history.append(
+            {"guess": raw_guess, "outcome": "Invalid", "distance": None}
+        )
         st.error(err)
     else:
-        st.session_state.history.append(guess_int)
+        st.session_state.attempts += 1
 
         if st.session_state.attempts % 2 == 0:
             secret = str(st.session_state.secret)
@@ -156,9 +162,21 @@ if submit:
             secret = st.session_state.secret
 
         outcome, message = check_guess(guess_int, secret)
+        distance = abs(guess_int - st.session_state.secret)
+        st.session_state.history.append(
+            {
+                "guess": guess_int,
+                "outcome": outcome,
+                "distance": distance,
+            }
+        )
 
-        if show_hint:
-            st.warning(message)
+        hot_threshold = max(2, round((high - low) * 0.1))
+        if show_hint and outcome != "Win":
+            if distance <= hot_threshold:
+                st.warning(f"🔥 **Hot · {outcome}!** {message}")
+            else:
+                st.info(f"❄️ **Cold · {outcome}!** {message}")
 
         st.session_state.score = update_score(
             current_score=st.session_state.score,
@@ -170,8 +188,8 @@ if submit:
             st.balloons()
             st.session_state.status = "won"
             st.success(
-                f"You won! The secret was {st.session_state.secret}. "
-                f"Final score: {st.session_state.score}"
+                f"🎉 **You got it!** Secret: **{st.session_state.secret}** · "
+                f"Score: **{st.session_state.score}**"
             )
         else:
             if st.session_state.attempts >= attempt_limit:
@@ -181,6 +199,8 @@ if submit:
                     f"The secret was {st.session_state.secret}. "
                     f"Score: {st.session_state.score}"
                 )
+
+render_guess_history()
 
 st.divider()
 st.caption("Built by an AI that claims this code is production-ready.")

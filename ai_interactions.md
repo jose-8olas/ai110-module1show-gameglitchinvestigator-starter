@@ -10,15 +10,17 @@
 
 **What task did you give the agent?**
 
-<!-- Describe the goal you asked the agent to accomplish -->
+I asked AI to create me a guess history feature to keep track of guesses made before and some documenattion chnages as well. Also, for this challenge, AI identified three potential "edge case" inputs. I used codepath examples.
 
 **What did the agent do?**
 
-<!-- List the steps the agent took (files edited, commands run, etc.) -->
+The agent inspected the guessing game application and planned the guess history feature. It modified the app.py to add the features adding and modifying the code so that it appears on the sidebar as I intended. It also added some edge test cases and
 
 **What did you have to verify or fix manually?**
 
 <!-- Describe anything the agent got wrong or that required human review -->
+
+I manually tested the new features and fixes presented by AI. Checked if the guess history correctly displays on teh sidebar as intended. I adjusted minor UI changes.
 
 ---
 
@@ -26,11 +28,11 @@
 
 > Document how you used AI to help generate or improve tests.
 
-| Edge Case | Prompt Used | AI-Suggested Test | Did It Pass? | Your Reasoning |
-|-----------|-------------|-------------------|--------------|----------------|
-| | | | | |
-| | | | | |
-| | | | | |
+| Edge Case                  | Prompt Used                                                                                                                                                                                  | AI-Suggested Test                                                                                                                                                                                                                                     | Did It Pass? | Your Reasoning                                                                                          |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------- |
+| Edge case Negative num     | For this challenge, identify three potential "edge case" inputs (e.g., negative numbers, decimals, or extremely large values) that might still break the game. can you mkae these edge cases | Genearted three fucntions to handle the 3 cases test_negative_guess_is_rejected(), test_decimal_guess_is_rejected_instead_of_truncated(), and test_extremely_large_guess_is_rejected_without_crashing(). I tested them on test.py and verified myslef | Yes          | Neagtive numbers, decimals, and larger values shouldn't be acccounted for since we have specific ranges |
+| edge case for decimals     | For this challenge, identify three potential "edge case" inputs (e.g., negative numbers, decimals, or extremely large values) that might still break the game. can you mkae these edge cases | Genearted three fucntions to handle the 3 cases test_negative_guess_is_rejected(), test_decimal_guess_is_rejected_instead_of_truncated(), and test_extremely_large_guess_is_rejected_without_crashing(). I tested them on test.py and verified myslef | Yes          | Neagtive numbers, decimals, and larger values shouldn't be acccounted for since we have specific ranges |
+| Edge case for large values | For this challenge, identify three potential "edge case" inputs (e.g., negative numbers, decimals, or extremely large values) that might still break the game. can you mkae these edge cases | Genearted three fucntions to handle the 3 cases test_negative_guess_is_rejected(), test_decimal_guess_is_rejected_instead_of_truncated(), and test_extremely_large_guess_is_rejected_without_crashing(). I tested them on test.py and verified myslef | Yes          | Neagtive numbers, decimals, and larger values shouldn't be acccounted for since we have specific ranges |
 
 ---
 
@@ -41,18 +43,22 @@
 **Prompt used:**
 
 ```
-<!-- Paste the prompt you gave the AI -->
+Add professional-grade docstrings to every function in logic_utils.py. Keep the existing functionality unchanged. Make the docstrings clear and concise.
+
+Review logic_utils.py for PEP 8 style compliance. Identify any formatting or naming issues and fix them. Do not change the functionality of the code. After making the changes, explain what you changed.
 ```
 
 **Linting output before:**
 
 ```
-<!-- Paste relevant linter warnings/errors -->
+$ python -m pycodestyle logic_utils.py
+logic_utils.py:40:1: E302 expected 2 blank lines, found 1
+(.venv)
 ```
 
 **Changes applied:**
 
-<!-- Describe what you changed based on the AI's suggestions -->
+PEP 8 formatting issue where there was only one blank line. The AI fixed this issue for me quickly.
 
 ---
 
@@ -64,13 +70,15 @@
 
 <!-- Describe what you asked each model to do -->
 
-| | Model A | Model B |
-|-|---------|---------|
-| **Model name** | | |
-| **Response summary** | | |
-| **More Pythonic?** | | |
-| **Clearer explanation?** | | |
+I asked the model to fix the check guessed function that was wrong at the start of proejct
+
+|                          | Model A             | Model B             |
+| ------------------------ | ------------------- | ------------------- |
+| **Model name**           | gpt 4               | cluade opus         |
+| **Response summary**     | good                | good                |
+| **More Pythonic?**       | Yes                 | No                  |
+| **Clearer explanation?** | Both about the same | Both about the same |
 
 **Which did you prefer and why?**
 
-<!-- Your conclusion -->
+I think overall I preferroed Chatgpt since it gave me a simple fix. Claude restrutcured the code differently and changed some things.

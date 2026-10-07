@@ -47,6 +47,7 @@ st.session_state.history = []
 
 Now, one time where I prevented AI from chnaging my code was when I was asking it why my current application was telling the using to guess higher when they were supposed to guess lower. I asked AI to tell me why and it expalined to me that the outputs messages where reversed. It rewrote my code into something a little bit more diffrent and changed the strcuture of the code.
 Here is an example:
+
 def check_guess(guess, secret):
 try:
 difference = int(guess) - int(secret)
