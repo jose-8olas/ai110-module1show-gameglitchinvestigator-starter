@@ -57,8 +57,7 @@ logic_utils.py:40:1: E302 expected 2 blank lines, found 1
 ```
 
 **Changes applied:**
-
-PEP 8 formatting issue where there was only one blank line. The AI fixed this issue for me quickly.
+There was a formatting issue invlvoing only 1 blank line as indicated by the linting output and it expected 2. I asked the AI and it fixed this issue for me quickly without any input from me. This was a simple fix.
 
 ---
 
