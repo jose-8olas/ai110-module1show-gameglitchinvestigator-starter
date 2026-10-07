@@ -8,6 +8,8 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
 
+Two bugs I saw is that whenver changing difficulty, the range of numbers coressponding to the diffuclty will not update on the center of the page. Also, another bug is that whenever a user guessed a number that was higher than the secret number, the app will say that the number was too low meaning we will need to go higher.
+
 **Bug Reproduction Log**
 
 Document at least 3 bugs you found. Add rows as needed.
