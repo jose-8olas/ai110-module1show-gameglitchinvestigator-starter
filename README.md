@@ -77,5 +77,7 @@ tests\test_game_logic.py ......                                                 
 
 ## 🚀 Stretch Features
 
-- [ ] [If you choose to complete Challenge 4, describe the Enhanced UI changes here — a screenshot is optional]
+- [x] [If you choose to complete Challenge 4, describe the Enhanced UI changes here — a screenshot is optional]
 ```
+
+A few minor changes were made such as adding emojis and coloring for the different guess results. These were minor changes to the app.py
