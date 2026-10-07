@@ -10,17 +10,17 @@
 
 **What task did you give the agent?**
 
-I asked AI to create me a guess history feature to keep track of guesses made before and some documenattion chnages as well. Also, for this challenge, AI identified three potential "edge case" inputs. I used codepath examples.
+I asked AI to create me a guess history feature to keep track of guesses made before and some documenation chnages as well.
 
 **What did the agent do?**
 
-The agent inspected the guessing game application and planned the guess history feature. It modified the app.py to add the features adding and modifying the code so that it appears on the sidebar as I intended. It also added some edge test cases and
+The agent inspected the guessing game application and planned the guess history feature. It modified the app.py to add the features adding and modifying the code so that it appears on the sidebar as I intended. It also added some edge test cases and documentation changes
 
 **What did you have to verify or fix manually?**
 
 <!-- Describe anything the agent got wrong or that required human review -->
 
-I manually tested the new features and fixes presented by AI. Checked if the guess history correctly displays on teh sidebar as intended. I adjusted minor UI changes.
+I manually tested the new features and fixes presented by AI. Checked if the guess history correctly displays on the sidebar as intended. I adjusted minor UI changes.
 
 ---
 
@@ -28,11 +28,11 @@ I manually tested the new features and fixes presented by AI. Checked if the gue
 
 > Document how you used AI to help generate or improve tests.
 
-| Edge Case                  | Prompt Used                                                                                                                                                                                  | AI-Suggested Test                                                                                                                                                                                                                                     | Did It Pass? | Your Reasoning                                                                                          |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------- |
-| Edge case Negative num     | For this challenge, identify three potential "edge case" inputs (e.g., negative numbers, decimals, or extremely large values) that might still break the game. can you mkae these edge cases | Genearted three fucntions to handle the 3 cases test_negative_guess_is_rejected(), test_decimal_guess_is_rejected_instead_of_truncated(), and test_extremely_large_guess_is_rejected_without_crashing(). I tested them on test.py and verified myslef | Yes          | Neagtive numbers, decimals, and larger values shouldn't be acccounted for since we have specific ranges |
-| edge case for decimals     | For this challenge, identify three potential "edge case" inputs (e.g., negative numbers, decimals, or extremely large values) that might still break the game. can you mkae these edge cases | Genearted three fucntions to handle the 3 cases test_negative_guess_is_rejected(), test_decimal_guess_is_rejected_instead_of_truncated(), and test_extremely_large_guess_is_rejected_without_crashing(). I tested them on test.py and verified myslef | Yes          | Neagtive numbers, decimals, and larger values shouldn't be acccounted for since we have specific ranges |
-| Edge case for large values | For this challenge, identify three potential "edge case" inputs (e.g., negative numbers, decimals, or extremely large values) that might still break the game. can you mkae these edge cases | Genearted three fucntions to handle the 3 cases test_negative_guess_is_rejected(), test_decimal_guess_is_rejected_instead_of_truncated(), and test_extremely_large_guess_is_rejected_without_crashing(). I tested them on test.py and verified myslef | Yes          | Neagtive numbers, decimals, and larger values shouldn't be acccounted for since we have specific ranges |
+| Edge Case                  | Prompt Used                                                                                                                                                                                  | AI-Suggested Test                                                                                           | Did It Pass? | Your Reasoning                                                             |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------ | -------------------------------------------------------------------------- |
+| Edge case Negative num     | For this challenge, identify three potential "edge case" inputs (e.g., negative numbers, decimals, or extremely large values) that might still break the game. can you mkae these edge cases | Genearted test_negative_guess_is_rejected(). I tested on test.py and verified myslef                        | Yes          | Neagtive numbers shouldn't be acccounted for since we have specific ranges |
+| edge case for decimals     | For this challenge, identify three potential "edge case" inputs (e.g., negative numbers, decimals, or extremely large values) that might still break the game. can you mkae these edge cases | Genearted test_decimal_guess_is_rejected_instead_of_truncated(). I tested on test.py and verified myslef    | Yes          | decimals shouldn't be acccounted for since we have specific ranges         |
+| Edge case for large values | For this challenge, identify three potential "edge case" inputs (e.g., negative numbers, decimals, or extremely large values) that might still break the game. can you mkae these edge cases | Geneartedtest_extremely_large_guess_is_rejected_without_crashing(). I tested on test.py and verified myslef | Yes          | Larger values shouldn't be acccounted for since we have specific ranges    |
 
 ---
 

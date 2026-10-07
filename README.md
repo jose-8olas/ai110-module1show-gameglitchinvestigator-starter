@@ -62,6 +62,8 @@ tests\test_game_logic.py ...                                                    
 
 
 
+HERE IS TEST RESULTS OF Advanced Edge-Case Testing:
+
 ========================================== test session starts ==========================================
 platform win32 -- Python 3.13.15, pytest-9.1.1, pluggy-1.6.0
 rootdir: C:\Users\15612\codepath-week2\ai110-module1show-gameglitchinvestigator-starter
@@ -80,4 +82,6 @@ tests\test_game_logic.py ......                                                 
 - [x] [If you choose to complete Challenge 4, describe the Enhanced UI changes here — a screenshot is optional]
 ```
 
-A few minor changes were made such as adding emojis and coloring for the different guess results. These were minor changes to the app.py
+UI Enhancements:
+
+A few minor changes were made such as adding emojis and coloring for the different guess results. These were minor changes to the app.py. For guesses that are hot meaning that the guess is close we add a 🔥, while cold guesses will display a ❄️. This makes this a little bit more visually appealing.
