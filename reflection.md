@@ -32,33 +32,35 @@ An example, when AI was correct was when I was asking it why my current applicat
 
 Suggestions from AI:
 
-st.sidebar.caption(f"Range: {low} to {high}")
+    st.sidebar.caption(f"Range: {low} to {high}")
 
-if "secret_difficulty" not in st.session_state:
-st.session_state.secret = random.randint(low, high)
-st.session_state.secret_difficulty = difficulty
-elif st.session_state.secret_difficulty != difficulty:
-st.session_state.secret = random.randint(low, high)
-st.session_state.secret_difficulty = difficulty
-st.session_state.attempts = 0
-st.session_state.score = 0
-st.session_state.status = "playing"
-st.session_state.history = []
+    if "secret_difficulty" not in st.session_state:
+      st.session_state.secret = random.randint(low, high)
+      st.session_state.secret_difficulty = difficulty
+    elif st.session_state.secret_difficulty != difficulty:
+      st.session_state.secret = random.randint(low, high)
+      st.session_state.secret_difficulty = difficulty
+      st.session_state.attempts = 0
+      st.session_state.score = 0
+      st.session_state.status = "playing"
+      st.session_state.history = []
+
 
 Now, one time where I prevented AI from chnaging my code was when I was asking it why my current application was telling the using to guess higher when they were supposed to guess lower. I asked AI to tell me why and it expalined to me that the outputs messages where reversed. It rewrote my code into something a little bit more diffrent and changed the strcuture of the code.
 Here is an example:
-def check_guess(guess, secret):
-try:
-difference = int(guess) - int(secret)
-except (TypeError, ValueError):
-return "Invalid", "⚠️ That guess couldn't be checked."
 
-    if difference == 0:
-        return "Win", "🎉 Correct!"
-    elif difference > 0:
-        return "Too High", "📈 Go Lower!"
-    else:
-        return "Too Low", "📉 Go Higher!"
+    
+    def check_guess(guess, secret):
+      try:
+        difference = int(guess) - int(secret)
+      except (TypeError, ValueError):
+        return "Invalid", "⚠️ That guess couldn't be checked."
+        if difference == 0:
+            return "Win", "🎉 Correct!"
+        elif difference > 0:
+            return "Too High", "📈 Go Lower!"
+        else:
+            return "Too Low", "📉 Go Higher!"
 
 The code was not doing anything wrong but the messages where in the wrong places. So i adjusted the code accordingly. So i followed advice of Claude but not copy pasted their code. The fix was very simple.
 
