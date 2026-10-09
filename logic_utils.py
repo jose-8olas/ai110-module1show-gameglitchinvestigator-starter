@@ -1,29 +1,17 @@
+
 def get_range_for_difficulty(difficulty: str):
-    """Return the inclusive guess bounds for a difficulty level.
-
-    Args:
-        difficulty: The selected difficulty name.
-
-    Returns:
-        A ``(low, high)`` tuple of inclusive integer bounds.
-    """
-    raise NotImplementedError(
-        "Refactor this function from app.py into logic_utils.py"
-    )
+    """Return the inclusive guess bounds for a difficulty level."""
+    if difficulty == "Easy":
+        return 1, 20
+    if difficulty == "Normal":
+        return 1, 100
+    if difficulty == "Hard":
+        return 1, 50
+    return 1, 100
 
 
 def parse_guess(raw: str, low: int = 1, high: int = 100):
-    """Parse text as an integer guess and validate it against inclusive bounds.
-
-    Args:
-        raw: The input text to parse.
-        low: The minimum permitted guess.
-        high: The maximum permitted guess.
-
-    Returns:
-        A tuple of success status, parsed guess (or ``None``), and error
-        message (or ``None``).
-    """
+    """Parse and validate a whole-number guess."""
     if raw is None or not raw.strip():
         return False, None, "Enter a guess."
 
@@ -38,45 +26,29 @@ def parse_guess(raw: str, low: int = 1, high: int = 100):
     return True, value, None
 
 
-def check_guess(guess, secret):
-    """Compare a guess with the secret and return its outcome and hint.
-
-    Args:
-        guess: The player's guess.
-        secret: The game's secret value.
-
-    Returns:
-        A tuple containing ``"Win"``, ``"Too High"``, or ``"Too Low"`` and
-        the corresponding player-facing hint.
-    """
+def check_guess(guess: int, secret: int):
+    """Compare a guess with the secret number."""
     if guess == secret:
         return "Win", "🎉 Correct!"
-
-    try:
-        if guess > secret:
-            return "Too High", "📈 Go Lower!"
-        else:
-            return "Too Low", "📉 Go Higher!"
-    except TypeError:
-        guess_text = str(guess)
-        if guess_text == secret:
-            return "Win", "🎉 Correct!"
-        if guess_text > secret:
-            return "Too High", "📈 Go Lower!"
-        return "Too Low", "📉 Go Higher!"
+    if guess > secret:
+        return "Too High", "📈 Go Lower!"
+    return "Too Low", "📉 Go Higher!"
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
-    """Calculate the updated score for a guess outcome.
+    """Update the score using the game's existing scoring rules."""
+    if outcome == "Win":
+        points = 100 - 10 * (attempt_number + 1)
+        if points < 10:
+            points = 10
+        return current_score + points
 
-    Args:
-        current_score: The player's score before this outcome.
-        outcome: The result label for the guess.
-        attempt_number: The one-based number of the current attempt.
+    if outcome == "Too High":
+        if attempt_number % 2 == 0:
+            return current_score + 5
+        return current_score - 5
 
-    Returns:
-        The score after applying the outcome's scoring rule.
-    """
-    raise NotImplementedError(
-        "Refactor this function from app.py into logic_utils.py"
-    )
+    if outcome == "Too Low":
+        return current_score - 5
+
+    return current_score
