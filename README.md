@@ -69,11 +69,11 @@ platform win32 -- Python 3.13.15, pytest-9.1.1, pluggy-1.6.0
 rootdir: C:\Users\15612\codepath-week2\ai110-module1show-gameglitchinvestigator-starter
 configfile: pytest.ini
 plugins: anyio-4.15.1
-collected 6 items
+collected 13 items
 
-tests\test_game_logic.py ......                                                                                [100%]
+tests\test_game_logic.py .............                                                                         [100%]
 
-================================================= 6 passed in 0.05s =================================================
+================================================ 13 passed in 0.05s =================================================
 ## 🚀 Stretch Features
 
 - [x] [If you choose to complete Challenge 4, describe the Enhanced UI changes here — a screenshot is optional]
@@ -81,10 +81,11 @@ tests\test_game_logic.py ......                                                 
 
 ## Bugs Found and Fixes Applied
 
-1. When entering number, application would display TOO HIGH or TOO LOW. When I guessed a number that was TOO HIGH, the application will incorretcly tell me it was TOO LOW. Therefore, I would go Higher.
-2.
-3.
-4.
+1. When entering number, application would display TOO HIGH or TOO LOW. When I guessed a number that was TOO HIGH, the application will incorrectly tell me it was TOO LOW. Therefore, I would go Higher.
+2. Missing difficulty tests: Added tests for Easy, Normal, and Hard ranges.
+3. Other missing test for scoring were addded as well.
+4. Ranges from each difficulty did not change when clicking different difficulty
+5. Attempts dispalyed on sidebar did not match those on center of game screen
 
 UI Enhancements:
 
